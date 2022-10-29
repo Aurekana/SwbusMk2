@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name MCU_Board)(type KiCad)(uri ${KIPRJMOD}/MCU_Board.pretty)(options "")(descr ""))
+  (lib (name USBC)(type KiCad)(uri C:/Users/aurek/Downloads/ul_2169890001/KiCAD/2022-09-08_03-57-22/USBC.pretty)(options "")(descr ""))
+  (lib (name Mainboard)(type KiCad)(uri "C:/Users/aurek/Desktop/Cosplay/Destiny/Sweet Business Mk II/KiCAD/Mainboard.pretty")(options "")(descr ""))
+)
