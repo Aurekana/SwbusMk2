@@ -1,4 +1,0 @@
-(sym_lib_table
-  (lib (name "Mainboard")(type "Legacy")(uri "C:/Users/aurek/Desktop/Cosplay/Destiny/Sweet Business Mk II/KiCAD/Mainboard.lib")(options "")(descr ""))
-  (lib (name "MCU_Board-rescue")(type "Legacy")(uri "${KIPRJMOD}/MCU_Board-rescue.lib")(options "")(descr ""))
-)
