@@ -10,13 +10,15 @@
 Adafruit_NeoPixel barrel(NeoCount, NeoPin, NEO_GRB + NEO_KHZ800);
 
 int bullet = 1; // Energy put into system by one firing event
-int cooling = 10; // Energy taken out of system every time period
+int cooling = 5; // Energy taken out of system every time period
 // int heat = 1; // Amount of heat to transfer to next barrel section
-int maxtemp = 1800; // Color max value
+int maxtemp = 2500; // Color max value
+int OptoState = 0;
+int lastOptoState = 0;
 
 unsigned long startMillis;
 unsigned long currentMillis;
-const unsigned long period = 1000; // Time period
+const unsigned long period = 500; // Time period
 
 int counter = 1;
 
@@ -34,7 +36,7 @@ int Red(int x){
   float c = 5.061574;
   float d = -3006.84583;
   float RedVal = (x * x * x * a) + (x * x * b) + (x * c) + d;
-  float RedLow = (0. 127 * x);
+  float RedLow = (0.127 * x);
   if (x >= 1100){
     if (RedVal > 0){
       if (RedVal < 255) return RedVal;
@@ -96,8 +98,9 @@ void setup() {
   pinMode(LEDPin,OUTPUT);
 
   barrel.begin();
+  barrel.setBrightness(127);
   barrel.show();
-
+  
   startMillis = millis();
 
   for (int j = 0; j < NeoCount; j++){
@@ -114,13 +117,26 @@ void loop() {
     startMillis = currentMillis;
   }
 
-  if (digitalRead(OptoPin) == LOW){
-    digitalWrite(LEDPin, HIGH);
-    counter = counter + bullet;
+  OptoState = digitalRead(OptoPin);
+  if (OptoState != lastOptoState){
+    if (OptoState == HIGH){
+      counter = counter + bullet;
+      digitalWrite(LEDPin, HIGH);
+    }
+    else{
+      digitalWrite(LEDPin, LOW);
+    }
   }
-  else{
-    digitalWrite(LEDPin,LOW);
-  }
+  delay(10);
+  lastOptoState = OptoState;
+  
+//  if (digitalRead(OptoPin) == LOW){
+//    digitalWrite(LEDPin, HIGH);
+//    counter = counter + bullet;
+//  }
+//  else{
+//    digitalWrite(LEDPin,LOW);
+//  }
 
   if (counter > maxtemp) counter = maxtemp;
   if (counter < 0) counter = 0;
