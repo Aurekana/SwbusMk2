@@ -120,6 +120,6 @@ void loop() {
     }
   }
   for (int i = 0; i < NUM_LEDS; i++) {
-    ColorSet(HeatTransfer(i), i);-
+    ColorSet(HeatTransfer(i), i);
   }
 }
